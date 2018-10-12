@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span>Sujets</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sujet" [routerLink]="['/sujet/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Sujet
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sujets">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Libelle</span></th>
+            <th><span>Detail</span></th>
+            <th><span>Suivi</span></th>
+            <th><span>Id Evolution</span></th>
+            <th><span>Origine</span></th>
+            <th><span>Projet</span></th>
+            <th><span>Theme</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sujet of sujets ;trackBy: trackId">
+                <td><a [routerLink]="['/sujet', sujet.id, 'view' ]">{{sujet.id}}</a></td>
+                <td>{{sujet.libelle}}</td>
+                <td>{{sujet.detail}}</td>
+                <td>{{sujet.suivi}}</td>
+                <td>{{sujet.idEvolution}}</td>
+                <td>{{sujet.origine}}</td>
+                <td>
+                    <div *ngIf="sujet.projet">
+                        <a [routerLink]="['../projet', sujet.projet?.id, 'view' ]" >{{sujet.projet?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sujet.theme">
+                        <a [routerLink]="['../theme', sujet.theme?.id, 'view' ]" >{{sujet.theme?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sujet', sujet.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sujet', sujet.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sujet/'+ sujet.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

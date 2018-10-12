@@ -1,0 +1,26 @@
+{
+    "name": "Theme",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "sujet",
+            "otherEntityName": "sujet",
+            "otherEntityRelationshipName": "theme"
+        }
+    ],
+    "changelogDate": "20181012212338",
+    "entityTableName": "theme",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

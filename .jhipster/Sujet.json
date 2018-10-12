@@ -1,0 +1,49 @@
+{
+    "name": "Sujet",
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "detail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "suivi",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "idEvolution",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "origine",
+            "fieldType": "ContextOrigineEnum",
+            "fieldValues": "PRODUCT,SERVICE,PRESALES"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "projet",
+            "otherEntityName": "projet",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "theme",
+            "otherEntityName": "theme",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181012212336",
+    "entityTableName": "sujet",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
