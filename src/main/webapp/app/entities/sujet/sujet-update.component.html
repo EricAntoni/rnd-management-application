@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sujet-heading">Create or edit a Sujet</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sujet.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sujet.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                        [(ngModel)]="sujet.libelle" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detail">Detail</label>
+                    <input type="text" class="form-control" name="detail" id="field_detail"
+                        [(ngModel)]="sujet.detail" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_suivi">Suivi</label>
+                    <input type="checkbox" class="form-control" name="suivi" id="field_suivi"
+                        [(ngModel)]="sujet.suivi" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_idEvolution">Id Evolution</label>
+                    <input type="number" class="form-control" name="idEvolution" id="field_idEvolution"
+                        [(ngModel)]="sujet.idEvolution" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_origine">Origine</label>
+                    <select class="form-control" name="origine" [(ngModel)]="sujet.origine" id="field_origine" >
+                        <option value="PRODUCT">PRODUCT</option>
+                        <option value="SERVICE">SERVICE</option>
+                        <option value="PRESALES">PRESALES</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_projet">Projet</label>
+                    <select class="form-control" id="field_projet" name="projet" [(ngModel)]="sujet.projet" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="projetOption.id === sujet.projet?.id ? sujet.projet : projetOption" *ngFor="let projetOption of projets; trackBy: trackProjetById">{{projetOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_theme">Theme</label>
+                    <select class="form-control" id="field_theme" name="theme" [(ngModel)]="sujet.theme" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="themeOption.id === sujet.theme?.id ? sujet.theme : themeOption" *ngFor="let themeOption of themes; trackBy: trackThemeById">{{themeOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

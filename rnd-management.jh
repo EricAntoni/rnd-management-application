@@ -1,0 +1,30 @@
+entity Sujet {
+	libelle String
+    detail String
+    suivi Boolean
+    idEvolution Integer
+    origine ContextOrigineEnum
+}
+
+entity Projet {	name String }
+entity Theme { name String } 
+enum ContextOrigineEnum { PRODUCT, SERVICE, PRESALES }
+
+relationship OneToMany {
+	Projet{sujet} to Sujet{projet(name)}
+	Theme{sujet} to Sujet{theme(name)}
+}
+
+
+
+// relationship OneToOne {
+// }
+
+// relationship ManyToMany {
+// }
+
+// relationship OneToMany {
+// }
+
+// relationship ManyToOne {
+// }
